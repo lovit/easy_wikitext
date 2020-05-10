@@ -1,0 +1,19 @@
+# MacOS
+.DS_Store
+
+# Dataset
+easy_wikitext/data/*.zip
+easy_wikitext/data/wikitext-*/
+
+# Python
+*.pyc
+__pycache__/
+dist/
+build/
+*.egg-info/
+
+# Experiments
+tmp/
+
+# Jupyter notebook
+.ipynb_checkpoints/
