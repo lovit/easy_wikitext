@@ -1,6 +1,6 @@
 # wikitext data easy-handler
 
-This package helps you handle `wikitext` easily, from download to load.
+This package helps you handle [`wikitext`](https://www.salesforce.com/products/einstein/ai-research/the-wikitext-dependency-language-modeling-dataset) easily, from download to load.
 
 ## Usage
 
