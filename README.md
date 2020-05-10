@@ -1,5 +1,9 @@
 # wikitext data easy-handler
 
+This package helps you handle `wikitext` easily, from download to load.
+
+## Usage
+
 Set `data_type` as one of [None, 'train', 'valid', 'test']
 
 ```python
