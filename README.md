@@ -29,6 +29,13 @@ paragraphs[0]
 Paragraph(doc_idx=0, paragraph_idx=1, title='2000 – 2005', texts=['In 2000 <unk> had a guest ...])
 ```
 
+To acquire sentence,
+
+```
+paragraph = paragraphs[0]
+paragraph.texts # list of str
+```
+
 You can easily transform the list of Paragraph to list of sentence.
 
 ```python
