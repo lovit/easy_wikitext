@@ -54,8 +54,9 @@ def check_install(name):
 
     print(f'{name} is not installed yet')
     if not os.path.exists(zippath):
-        print(f'begin downloading {name}.zip')
-        download_a_file(AVAILABLE_NAMES[name], zippath)
+        url = AVAILABLE_NAMES[name]
+        print(f'begin downloading {name}.zip from {url}')
+        download_a_file(url, zippath)
     if os.path.exists(zippath):
         print(f'unzip the downloaded {name}.zip file')
         unzip(zippath, f'{installpath}/data/')
@@ -89,13 +90,14 @@ def download_a_file(url, fname):
     try:
         r = requests.get(url, stream=True, headers=headers)
         total_length = int(r.headers.get('content-length'))
+        n = int(total_length / 1024)
         t = time.time()
         with open(fname, 'wb') as f:
             for i, chunk in enumerate(r.iter_content(chunk_size=1024)):
                 if chunk:
                     f.write(chunk)
                 if i % 100 == 0:
-                progress(i, total_length, t, done=False)
+                   progress(i, n, t, done=False)
         progress(-1, -1, t, done=True)
         return True
     except Exception as e:
@@ -106,16 +108,17 @@ def download_a_file(url, fname):
 def progress(i, n, begin_time, done):
     num_bars = 40
     consumed_time = time.time() - begin_time
-    expected_time = n * consumed_time / i
-    remain_time = expected_time - consumed_time
 
     if done:
         print(f'\rDownloading has been finished. consumed {consumed_time:.2} seconds.')
+        return None
 
     i += 1
+    expected_time = n * consumed_time / i
+    remain_time = expected_time - consumed_time
     num_done = int(40 * i / n)
     bars = '#' * num_done + '-' * (num_bars - num_done)
-    print(f'\r[{bars}] ({100 * i / n:.2f} %', end='')
+    print(f'\r[{bars}] ({100 * i / n:.2f} %)', end='')
 
 
 def unzip(source, destination):
